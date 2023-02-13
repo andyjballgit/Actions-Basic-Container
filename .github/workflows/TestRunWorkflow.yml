@@ -22,7 +22,7 @@ jobs:
   PlanNetwork:
     name: Plan Network (Prod)
     environment: "Production"
-    if: github.event.inputs.apply == 'false' || ( github.event_name == 'pull_request' )
+    if: github.event.inputs.apply == 'false' || ( github.event_name == 'pull_request' || (github.event_name == 'push'))
 
     runs-on: [Linux]
     container:
