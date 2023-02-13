@@ -2,6 +2,10 @@
 name: Test Workflow
 
 on:
+  push:
+    branches:
+      - "testworkflow10"
+
   pull_request:
     types: [ opened, synchronize ]
     paths:
@@ -10,7 +14,7 @@ on:
     inputs:
       apply:
         description: "Deploy Network?"
-        required: true
+        required: false
         default: "false"
 
 jobs:
