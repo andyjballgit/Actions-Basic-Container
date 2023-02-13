@@ -26,3 +26,10 @@ jobs:
     strategy:
       fail-fast: true
       max-parallel: 1
+
+    steps:
+      - name: Do hello world
+        shell: bash
+        run: |
+             echo "hello world"
+             
