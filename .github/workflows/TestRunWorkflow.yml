@@ -1,0 +1,35 @@
+name: Test Workflow
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+    paths:
+      - workload/1006-vdi-001/uksouth/**
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Deploy Network?"
+        required: true
+        default: "false"
+
+jobs:
+  # Run Checkov and Terraform Plan (Vnet)
+  PlanNetwork:
+    name: Plan Network (Prod)
+    environment: "Production"
+    if: github.event.inputs.apply == 'false' || ( github.event_name == 'pull_request' )
+
+    runs-on: [Linux]
+    container:
+      image: packages.schroders.com/docker/aztfmod/rover:1.0.4-2108.1802
+      options: --user 0
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+
+    steps:
+      - name: Do hello world
+        shell: bash
+        run: |
+             echo "hello world"
+             
