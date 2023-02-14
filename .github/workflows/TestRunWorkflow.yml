@@ -17,6 +17,9 @@ on:
         required: false
         default: "false"
 
+env:
+  SUBID:                 ${{ secrets.SUBID }}
+
 jobs:
   # Run Checkov and Terraform Plan (Vnet)
   PlanNetwork:
